@@ -3,18 +3,16 @@
 
 <head>
     <meta charset="UTF-8" />
-<style>
-
-</style>
+	<title>SQLite (json.js) test</title>
 </head>
 
 <body>
 
-<h1>Test SQLite (json.js)</h1>
+<h1>SQLite (json.js) test</h1>
 
 <p>
-Module <a href="https://github.com/kripken/sql.js">sql.js</a> <br />
-Exemple d'utilisation : <a href="http://alasql.org/demo/016sqlite/">Read SQLite files in browser</a>
+JavaScript module: <a href="https://github.com/kripken/sql.js">sql.js</a> <br />
+Demo: <a href="http://alasql.org/demo/016sqlite/">Read SQLite files in browser</a>
 </p>
 
 <h1>Liste des pharmacies</h1>
@@ -63,11 +61,11 @@ Exemple d'utilisation : <a href="http://alasql.org/demo/016sqlite/">Read SQLite 
     $("#button_name").click(function() {
 		var time_old = new Date();
         var query = "select name, address, city, tel1, tel2, lat, lon from places where name like '%" + $("#input_name").val() + "%'";
-        $("#query").html("<h2>Requête</h2>"+query);
+        $("#query").html("<h2>Query</h2>"+query);
         var res = db.exec(query);
         var time_taken = new Date() - time_old;
-        $("#time").html("<h2>Temps</h2>"+ time_taken +" ms");
-        var content = "<h2>Résultats</h2>";
+        $("#time").html("<h2>Elapsed time</h2>"+ time_taken +" ms");
+        var content = "<h2>Results</h2>";
         var res_val = res[0].values;
         for (var i=0; i < res_val.length; i++) {
             content += res_val[i][0] + "\n";
@@ -82,11 +80,11 @@ Exemple d'utilisation : <a href="http://alasql.org/demo/016sqlite/">Read SQLite 
     $("#button_address").click(function() {
 		var time_old = new Date();
         var query = "select name, address, city, tel1, tel2, lat, lon from places where address like '%" + $("#input_address").val() + "%'";
-        $("#query").html("<h2>Requête</h2>"+query);
+        $("#query").html("<h2>Query</h2>"+query);
         var res = db.exec(query);
         var time_taken = new Date() - time_old;
-        $("#time").html("<h2>Temps</h2>"+ time_taken +" ms");
-        var content = "<h2>Résultats</h2>";
+        $("#time").html("<h2>Elapsed time</h2>"+ time_taken +" ms");
+        var content = "<h2>Results</h2>";
         var res_val = res[0].values;
         for (var i=0; i < res_val.length; i++) {
             content += res_val[i][0] + "\n";
@@ -100,5 +98,4 @@ Exemple d'utilisation : <a href="http://alasql.org/demo/016sqlite/">Read SQLite 
 
 </script>
 </body>
-
 </html>

@@ -3,18 +3,16 @@
 
 <head>
     <meta charset="UTF-8" />
-<style>
-
-</style>
+	<title>json (JsonQuery) test</title>
 </head>
 
 <body>
 
-<h1>Test json (JsonQuery)</h1>
+<h1>json (JsonQuery) test</h1>
 
 <p>
-Module <a href="https://github.com/jiren/JsonQuery">JsonQuery.js</a> <br />
-Exemple d'utilisation : <a href="http://jiren.github.io/JsonQuery/">JsonQuery demo</a>
+JavaScript module: <a href="https://github.com/jiren/JsonQuery">JsonQuery.js</a> <br />
+Demo: <a href="http://jiren.github.io/JsonQuery/">JsonQuery demo</a>
 </p>
 
 <h1>Liste des pharmacies</h1>
@@ -46,10 +44,10 @@ Exemple d'utilisation : <a href="http://jiren.github.io/JsonQuery/">JsonQuery de
     $("#button_name").click(function() {
         var time_old = new Date();
         var query = "db.where({'name.$li': /" + $("#input_name").val() + "/i}).exec()";
-        $("#query").html("<h2>Requête</h2>"+query);
+        $("#query").html("<h2>Query</h2>"+query);
         var time_taken = new Date() - time_old;
-        $("#time").html("<h2>Temps</h2>"+ time_taken +" ms");
-        var content = "<h2>Résultats</h2>";
+        $("#time").html("<h2>Elapsed time</h2>"+ time_taken +" ms");
+        var content = "<h2>Results</h2>";
         results = eval(query);
         //$("#debug").html( JSON.stringify(results) );
         for (var i=0; i < results.length; i++) {
@@ -67,8 +65,8 @@ Exemple d'utilisation : <a href="http://jiren.github.io/JsonQuery/">JsonQuery de
         var query = "db.where({'address.$li': /" + $("#input_address").val() + "/i}).exec()";
         $("#query").html("<h2>Query</h2>"+query);
         var time_taken = new Date() - time_old;
-        $("#time").html("<h2>Temps</h2>"+ time_taken +" ms");
-        var content = "<h2>Resultats</h2>";
+        $("#time").html("<h2>Elapsed time</h2>"+ time_taken +" ms");
+        var content = "<h2>Results</h2>";
         results = eval(query);
         //$("#debug").html( JSON.stringify(results) );
         for (var i=0; i < results.length; i++) {
