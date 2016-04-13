@@ -8,7 +8,7 @@
 python create_db.py
 ```
 
-Data sample:
+Data sample (from json database):
 
 ```
 places = [
