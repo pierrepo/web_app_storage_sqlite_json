@@ -42,12 +42,9 @@ File size (for the exact same data):
 
 ## Data query
 
-Data queries were tested with json.js (for SQLite database -- see test_sqlite.html) or with JsonQuery (for json database -- see test_json.html).
+Data queries were tested with:
 
-Running tests are available here: 
-
-[json.js / SQLite](http://pierrepo.github.io/web_app_storage_sqlite_json/test_sqlite.html)  
-
-[JsonQuery / json](http://pierrepo.github.io/web_app_storage_sqlite_json/test_json.html)  
+- sql.js for SQLite database, see [test_sqlite.html](http://pierrepo.github.io/web_app_storage_sqlite_json/test_sqlite.html) for demo
+- JsonQuery for json database, see [test_json.html](http://pierrepo.github.io/web_app_storage_sqlite_json/test_json.html) for demo
 
  
