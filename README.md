@@ -46,7 +46,7 @@ Data queries were tested with json.js (for SQLite database -- see test_sqlite.ht
 
 Running tests are available here: 
 
-    - [json.js / SQLite](http://pierrepo.github.io/web_app_storage_sqlite_json/test_sqlite.html) 
-    - [JsonQuery / json](http://pierrepo.github.io/web_app_storage_sqlite_json/test_json.html)
+    - (json.js / SQLite)[http://pierrepo.github.io/web_app_storage_sqlite_json/test_sqlite.html] 
+    - (JsonQuery / json)[http://pierrepo.github.io/web_app_storage_sqlite_json/test_json.html]
 
  
