@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8" />
+<style>
+
+</style>
+</head>
+
+<body>
+
+<h1>Test SQLite (json.js)</h1>
+
+<p>
+Module <a href="https://github.com/kripken/sql.js">sql.js</a> <br />
+Exemple d'utilisation : <a href="http://alasql.org/demo/016sqlite/">Read SQLite files in browser</a>
+</p>
+
+<h1>Liste des pharmacies</h1>
+
+<div>
+<label for="input_name">Nom :</label>
+<input id="input_name" type="text" value="delo"/>
+<button id="button_name" type="button">Chercher</button>
+</div>
+
+<div>
+<label for="input_address">Adresse :</label>
+<input id="input_address" type="text" value="gau"/>
+<button id="button_address" type="button">Chercher</button>
+</div>
+
+<pre id="debug"></pre>
+<pre id="query"></pre>
+<pre id="time"></pre>
+<pre id="results"></pre>
+
+
+<script type="text/javascript" src="jquery-1.11.3.min.js"></script>
+<script src='sql.js'></script>
+<script>
+	function loadBinaryFile(path,success) {
+        var xhr = new XMLHttpRequest();
+        xhr.open("GET", path, true); 
+        xhr.responseType = "arraybuffer";
+        xhr.onload = function() {
+            var data = new Uint8Array(xhr.response);
+            var arr = new Array();
+            for(var i = 0; i != data.length; ++i) arr[i] = String.fromCharCode(data[i]);
+            success(arr.join(""));
+        };
+        xhr.send();
+    };
+
+    var db;
+	loadBinaryFile('./places_db.sqlite', function(data){
+		db = new SQL.Database(data);
+		//var res = db.exec("select name from places where name like '%delorm%'");
+		//document.getElementById("res").textContent = JSON.stringify(res);
+	});
+
+    $("#button_name").click(function() {
+		var time_old = new Date();
+        var query = "select name, address, city, tel1, tel2, lat, lon from places where name like '%" + $("#input_name").val() + "%'";
+        $("#query").html("<h2>Requête</h2>"+query);
+        var res = db.exec(query);
+        var time_taken = new Date() - time_old;
+        $("#time").html("<h2>Temps</h2>"+ time_taken +" ms");
+        var content = "<h2>Résultats</h2>";
+        var res_val = res[0].values;
+        for (var i=0; i < res_val.length; i++) {
+            content += res_val[i][0] + "\n";
+            content += res_val[i][1] + "\n";
+            content += res_val[i][2] + "\n";
+            content += "Tel : " + res_val[i][3] + " " + res_val[i][4] + "\n";
+            content += "Coordonnées : " + res_val[i][5] + " " + res_val[i][6] + "\n\n";
+        }
+        $("#results").html(content);
+    });
+
+    $("#button_address").click(function() {
+		var time_old = new Date();
+        var query = "select name, address, city, tel1, tel2, lat, lon from places where address like '%" + $("#input_address").val() + "%'";
+        $("#query").html("<h2>Requête</h2>"+query);
+        var res = db.exec(query);
+        var time_taken = new Date() - time_old;
+        $("#time").html("<h2>Temps</h2>"+ time_taken +" ms");
+        var content = "<h2>Résultats</h2>";
+        var res_val = res[0].values;
+        for (var i=0; i < res_val.length; i++) {
+            content += res_val[i][0] + "\n";
+            content += res_val[i][1] + "\n";
+            content += res_val[i][2] + "\n";
+            content += "Tel : " + res_val[i][3] + " " + res_val[i][4] + "\n";
+            content += "Coordonnées : " + res_val[i][5] + " " + res_val[i][6] + "\n\n";
+        }
+        $("#results").html(content);
+    });
+
+</script>
+</body>
+
+</html>

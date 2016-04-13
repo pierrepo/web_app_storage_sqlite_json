@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8" />
+<style>
+
+</style>
+</head>
+
+<body>
+
+<h1>Test json (JsonQuery)</h1>
+
+<p>
+Module <a href="https://github.com/jiren/JsonQuery">JsonQuery.js</a> <br />
+Exemple d'utilisation : <a href="http://jiren.github.io/JsonQuery/">JsonQuery demo</a>
+</p>
+
+<h1>Liste des pharmacies</h1>
+
+<div>
+<label for="input_name">Nom :</label>
+<input id="input_name" type="text" value="delo"/>
+<button id="button_name" type="button">Chercher</button>
+</div>
+
+<div>
+<label for="input_address">Adresse :</label>
+<input id="input_address" type="text" value="gau"/>
+<button id="button_address" type="button">Chercher</button>
+</div>
+
+<pre id="debug"></pre>
+<pre id="query"></pre>
+<pre id="time"></pre>
+<pre id="results"></pre>
+
+
+<script type="text/javascript" src="jquery-1.11.3.min.js"></script>
+<script type="text/javascript" src='json_query.min.js'></script>
+<script type="text/javascript" src='places_db.json'></script>
+<script>
+    var db = JsonQuery(places);
+
+    $("#button_name").click(function() {
+        var time_old = new Date();
+        var query = "db.where({'name.$li': /" + $("#input_name").val() + "/i}).exec()";
+        $("#query").html("<h2>Requête</h2>"+query);
+        var time_taken = new Date() - time_old;
+        $("#time").html("<h2>Temps</h2>"+ time_taken +" ms");
+        var content = "<h2>Résultats</h2>";
+        results = eval(query);
+        //$("#debug").html( JSON.stringify(results) );
+        for (var i=0; i < results.length; i++) {
+            content += results[i].name + "\n";
+            content += results[i].address + "\n";
+            content += results[i].city + "\n";
+            content += "Tel : " + results[i].tel1 + " " + results[i].tel2 + "\n";
+            content += "Coordonnées : " + results[i].lat + " " + results[i].lon + "\n\n";
+        }
+        $("#results").html(content);
+    });
+
+    $("#button_address").click(function() {
+        var time_old = new Date();
+        var query = "db.where({'address.$li': /" + $("#input_address").val() + "/i}).exec()";
+        $("#query").html("<h2>Query</h2>"+query);
+        var time_taken = new Date() - time_old;
+        $("#time").html("<h2>Temps</h2>"+ time_taken +" ms");
+        var content = "<h2>Resultats</h2>";
+        results = eval(query);
+        //$("#debug").html( JSON.stringify(results) );
+        for (var i=0; i < results.length; i++) {
+            content += results[i].name + "\n";
+            content += results[i].address + "\n";
+            content += results[i].city + "\n";
+            content += "Tel : " + results[i].tel1 + " " + results[i].tel2 + "\n";
+            content += "Coordonnées : " + results[i].lat + " " + results[i].lon + "\n\n";
+        }
+
+        $("#results").html(content);
+  
+    });
+
+</script>
+</body>
+
+</html>
